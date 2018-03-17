@@ -42,3 +42,26 @@ class Intuition(object):
         }
         response = self._request(tableid, payload)
         return response
+
+    def add_record(self, tableid: str, record: dict) -> dict:
+        payload = {'a': 'API_AddRecord'}
+        payload.update(record)
+        response = self._request(tableid, payload)
+        return response
+
+    def delete_record(self, tableid: str, rid: str) -> dict:
+        payload = {
+            'a': 'API_DeleteRecord',
+            'rid': rid
+        }
+        response = self._request(tableid, payload)
+        return response
+
+    def update_record(self, tableid: str, record: dict) -> dict:
+        payload = {
+            'a': 'API_EditRecord',
+            'rid': record['rid']
+        }
+        payload.update(record)
+        response = self._request(tableid, payload)
+        return response
