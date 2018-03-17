@@ -4,7 +4,7 @@ from . import secrets
 
 @pytest.fixture(scope="module")
 def client():
-    from intuition.client import Intuition
+    from pyintuition.client import Intuition
     _client = Intuition(secrets.INTUITION_TEST_URL, app_token=secrets.INTUITION_TEST_APP_TOKEN)
     _client.authenticate(secrets.INTUITION_TEST_USER, secrets.INTUITION_TEST_PW, 1)
     return _client
