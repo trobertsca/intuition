@@ -16,13 +16,13 @@ def test_authentication(client):
 @pytest.mark.run(order=2)
 def test_add_record(client):
     record = {
-        '_fnm_upc': '723755122161',
-        '_fnm_description': 'Moto G 5 Plus',
-        '_fnm_quantity': 10,
-        '_fnm_shelf_code': 'B1010',
-        '_fnm_restock_floor': 5,
-        '_fnm_restock_ceiling': 11,
-        '_fnm_units_per': 1
+        'upc': '723755122161',
+        'description': 'Moto G 5 Plus',
+        'quantity': 10,
+        'shelf_code': 'B1010',
+        'restock_floor': 5,
+        'restock_ceiling': 11,
+        'units_per': 1
     }
     response = client.add_record("bni4qnmfm", record)
     client.test_rid = response['rid']
@@ -38,7 +38,7 @@ def test_do_query_single_record(client):
 def test_update_record(client):
     record = {
         'rid': client.test_rid,
-        '_fnm_quantity': 5
+        'quantity': 5
     }
     response = client.update_record("bni4qnmfm", record)
     assert response['errcode'] == '0'

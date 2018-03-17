@@ -1,5 +1,6 @@
 import xmltodict
 import requests
+from .utils import prefix_field_names
 
 class Intuition(object):
     def __init__(self, url: str, app_token: str=""):
@@ -45,6 +46,7 @@ class Intuition(object):
 
     def add_record(self, tableid: str, record: dict) -> dict:
         payload = {'a': 'API_AddRecord'}
+        record = prefix_field_names(record)
         payload.update(record)
         response = self._request(tableid, payload)
         return response
@@ -62,6 +64,7 @@ class Intuition(object):
             'a': 'API_EditRecord',
             'rid': record['rid']
         }
+        record = prefix_field_names(record)
         payload.update(record)
         response = self._request(tableid, payload)
         return response
