@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "~/.pyenv/versions/intuition/bin/python",
+    "python.unitTest.pyTestArgs": [
+        "tests"
+    ],
+    "python.unitTest.pyTestEnabled": true
+}
