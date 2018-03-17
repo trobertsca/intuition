@@ -1,12 +1,11 @@
 import os
 import pytest
-from . import secrets
 
 @pytest.fixture(scope="module")
 def client():
     from pyintuition.client import Intuition
-    _client = Intuition(secrets.INTUITION_TEST_URL, app_token=secrets.INTUITION_TEST_APP_TOKEN)
-    _client.authenticate(secrets.INTUITION_TEST_USER, secrets.INTUITION_TEST_PW, 1)
+    _client = Intuition(os.environ['INTUITION_TEST_URL'], app_token=os.environ['INTUITION_TEST_APP_TOKEN'])
+    _client.authenticate(os.environ['INTUITION_TEST_USER'], os.environ['INTUITION_TEST_PW'], 1)
     _client.test_rid = None
     return _client
 
