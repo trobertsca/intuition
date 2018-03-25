@@ -16,13 +16,15 @@ def test_authentication(client):
 @pytest.mark.run(order=2)
 def test_add_record(client):
     record = {
-        'upc': '723755122161',
-        'description': 'Moto G 5 Plus',
-        'quantity': 10,
-        'shelf_code': 'B1010',
-        'restock_floor': 5,
-        'restock_ceiling': 11,
-        'units_per': 1
+        'fields': {
+            'upc': '723755122161',
+            'description': 'Moto G 5 Plus',
+            'quantity': 10,
+            'shelf_code': 'B1010',
+            'restock_floor': 5,
+            'restock_ceiling': 11,
+            'units_per': 1
+        }
     }
     response = client.add_record("bni4qnmfm", record)
     client.test_rid = response['rid']
@@ -30,7 +32,7 @@ def test_add_record(client):
 
 @pytest.mark.run(order=3)
 def test_do_query_single_record(client):
-    response = client.do_query("bni4qnmfm", "{6.EX.'723755122161'}")
+    response = client.do_query("bni4qnmfm", "{13.EX.'723755122161'}")
     assert response['errcode'] == '0'
     assert response['record']['upc'] == '723755122161'
 
@@ -48,4 +50,9 @@ def test_delete_record(client):
     rid = client.test_rid
     client.test_rid = None
     response = client.delete_record("bni4qnmfm", rid)
+    assert response['errcode'] == '0'
+
+@pytest.mark.run(order=6)
+def test_get_schema(client):
+    response = client.get_schema("bni4qnmfm")
     assert response['errcode'] == '0'
