@@ -19,6 +19,8 @@ class Intuition(object):
         _payload = deepcopy(self.base_payload)
 
         for k, v in payload.items():
+            # To support API_AddRecord. Not sure if this is universal.
+            # May require some refactoring later down the line.
             if k == 'fields':
                 for l, j in payload[k].items():
                     node = etree.SubElement(_payload, 'field', name=l)
