@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "~/.pyenv/versions/intuition/bin/python",
+    "python.pythonPath": "~/.pyenv/versions/pyintuition/bin/python",
     "python.unitTest.pyTestArgs": [
         "tests"
     ],

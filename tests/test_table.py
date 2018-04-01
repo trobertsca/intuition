@@ -1,6 +1,6 @@
 import os
 import pytest
-from pyintuition.orm import Table
+from pyintuition.orm import Table, Application
 
 @pytest.fixture(scope="module")
 def client():
@@ -12,5 +12,6 @@ def client():
     return _client
 
 def test_table_get(client):
-    table = Table.get(os.environ['INTUITION_TEST_TABLE_ID'], client)
+    app = Application.get(os.environ['INTUITION_TEST_APP_ID'], client)
+    table = Table.get(os.environ['INTUITION_TEST_TABLE_ID'], client, app)
     assert table

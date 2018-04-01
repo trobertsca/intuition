@@ -13,11 +13,10 @@ def client():
     _client.test_rid = None
     return _client
 
-def test_application_init(client):
-    response = client.get_schema(os.environ['INTUITION_TEST_APP_ID'])
-    app = Application(**response['table'])
-    assert app
-
-def test_application_get(client):
+@pytest.fixture(scope="module")
+def app(client):
     app = Application.get(os.environ['INTUITION_TEST_APP_ID'], client)
+    return app
+
+def test_application_get(client, app):
     assert app
